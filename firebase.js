@@ -79,17 +79,21 @@ const FB = {
 syncAdmin(announce){
   S.admins = [
     ...(window.ADMIN_UIDS || []),
-    "VcxxOBsze9Trx3xlty2B7LwDNGr1"
+    'VcxxOBsze9Trx3xlty2B7LwDNGr1'
   ];
+
   const was = S.me.admin;
   S.me.admin = S.admins.includes(this.uid);
+
   if(S.me.admin && (announce || !was)){
     setTimeout(()=>toast('관리자로 접속했습니다'), 600);
   }
+
   if(!S.me.admin && announce){
     console.warn('[FB] 관리자 아님. 내 ID:', this.uid,
                  '/ ADMIN_UIDS:', S.admins);
   }
+
   return S.me.admin;
 },
 
